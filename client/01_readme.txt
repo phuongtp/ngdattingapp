@@ -38,3 +38,27 @@ Changes in codes , because of Errors
       const user: User = JSON.parse(localStorage.getItem('user') || '{}');
       this.accountSerice.setCurrentUser(user);
     }
+
+3. Notify User:
+   with ngx toastr
+   >cd client
+   >npm install ngx-toastr
+   Than add styles:
+            "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+      -->     "./node_modules/font-awesome/css/font-awesome.css",
+      -->     "./node_modules/ngx-toastr/toastr.css",
+              "src/styles.scss"
+            ],
+
+4. Create Guards:
+D:\Werk\Leren\_udemy\_NetCoreAngular\DatingApp\client\src\app\_guards>ng g guard auth --skip-tests
+
+5. Use Bootstrap themes:
+   bootswatch.com
+   client> npm install bootswatch
+  "styles": [
+                "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+                "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+     -->        "./node_modules/bootswatch/dist/united/bootstrap.css",
