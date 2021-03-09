@@ -14,8 +14,10 @@ namespace API.Controllers
   {
     private readonly ITokenService _tokenService;
     // Initilze field from parameter
-    public AccountController(DataContext context, ITokenService tokenService): base(context)
+    private readonly DataContext _context;
+    public AccountController(DataContext context, ITokenService tokenService)
     {
+      _context = context;
       _tokenService = tokenService;
     }
 
@@ -23,6 +25,8 @@ namespace API.Controllers
     public async Task<ActionResult<UserDTO>> Register(RegisterDTO registerDTO)
     {
       if (await UserExists(registerDTO.Username)) return BadRequest("Username is taken.");
+
+      await Seed.SeedUsers(_context);
 
       using var hmac = new HMACSHA512();
 
@@ -36,10 +40,10 @@ namespace API.Controllers
       _context.Users.Add(user);
       await _context.SaveChangesAsync();
 
-      return new UserDTO 
+      return new UserDTO
       {
-          UserName = user.UserName,
-          Token = _tokenService.CreateToken(user)
+        UserName = user.UserName,
+        Token = _tokenService.CreateToken(user)
       };
     }
 
@@ -59,10 +63,10 @@ namespace API.Controllers
         if (computedHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid password");
       }
 
-      return new UserDTO 
+      return new UserDTO
       {
-          UserName = user.UserName,
-          Token = _tokenService.CreateToken(user)
+        UserName = user.UserName,
+        Token = _tokenService.CreateToken(user)
       };
     }
 

@@ -62,3 +62,7 @@ D:\Werk\Leren\_udemy\_NetCoreAngular\DatingApp\client\src\app\_guards>ng g guard
                 "./node_modules/bootstrap/dist/css/bootstrap.min.css",
                 "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
      -->        "./node_modules/bootswatch/dist/united/bootstrap.css",
+
+
+6. Drop database:
+   API> dotnet ef database drop
