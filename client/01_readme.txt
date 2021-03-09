@@ -52,6 +52,24 @@ Changes in codes , because of Errors
               "src/styles.scss"
             ],
 
+4. In _services:
+   was:
+    const HttpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer' + JSON.parse(localStorage.getItem('user')).token
+      })
+    }
+   Now: add || '{}'
+    const HttpOptions = {
+      headers: new HttpHeaders({
+        Authorization: 'Bearer' + JSON.parse(localStorage.getItem('user') || '{}').token
+      })
+    }
+
+5. interface:
+    was: let currentUser: User;
+    now: let currentUser: User = {} as User;
+
 4. Create Guards:
 D:\Werk\Leren\_udemy\_NetCoreAngular\DatingApp\client\src\app\_guards>ng g guard auth --skip-tests
 
@@ -66,3 +84,10 @@ D:\Werk\Leren\_udemy\_NetCoreAngular\DatingApp\client\src\app\_guards>ng g guard
 
 6. Drop database:
    API> dotnet ef database drop
+
+7. Search Angular documents:
+   valor-software.com/ngx-bootstrap/#/tabs
+
+8. ngx-gallery - npm
+   https://www.npmjs.com/package/@kolkov/ngx-gallery
+   >npm install @kolkov/ngx-gallery
