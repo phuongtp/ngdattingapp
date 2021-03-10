@@ -91,3 +91,8 @@ D:\Werk\Leren\_udemy\_NetCoreAngular\DatingApp\client\src\app\_guards>ng g guard
 8. ngx-gallery - npm
    https://www.npmjs.com/package/@kolkov/ngx-gallery
    >npm install @kolkov/ngx-gallery
+
+9. ngx-spinner
+   >npm install @angular/cdk
+   >npm install @schematics/angular/utility/change
+   >ng add ngx-spinner
