@@ -1,5 +1,13 @@
 Changes in codes , because of Errors
 
+In tsconfig.json: NEW!!!
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": false
+  }
+
 1. account.service.ts:
    was:
     login(model: any) {
@@ -69,6 +77,27 @@ Changes in codes , because of Errors
 5. interface:
     was: let currentUser: User;
     now: let currentUser: User = {} as User;
+
+
+6. isMatch:
+   Was:
+      matchValues(matchTo: string): ValidatorFn {
+        return (control: AbstractControl) => {
+          return control?.value === control?.parent?.controls[matchTo].value
+            ? null : {isMatching: true}
+        }
+      }
+
+   Now:
+      matchValues(matchTo: string): ValidatorFn {
+        return (control: AbstractControl) => {
+          if (control?.parent?.controls === undefined) return {isMatching: false};
+          var passValue = (control?.parent?.controls as { [key: string]: AbstractControl })[matchTo].value;
+          return control?.value === passValue
+            ? null : {isMatching: true}
+        }
+      }
+
 
 4. Create Guards:
 D:\Werk\Leren\_udemy\_NetCoreAngular\DatingApp\client\src\app\_guards>ng g guard auth --skip-tests
