@@ -1,24 +1,24 @@
 <div class="row" *ngIf="member">
   <div class="col-4">
     <div class="card">
-      <img src="{{member.photoUrl || './assets/user.png'}}" alt="{{member.knownAs}}"
+      <img src="{{member?.photoUrl || './assets/user.png'}}" alt="{{member?.knownAs}}"
         class="card-img-top img-thumbnail" />
       <div class="card-body">
         <div>
           <strong>Location:</strong>
-          <p>{{member.city}}, {{member.country}}</p>
+          <p>{{member?.city}}, {{member?.country}}</p>
         </div>
         <div>
           <strong>Age:</strong>
-          <p>{{member.age}}</p>
+          <p>{{member?.age}}</p>
         </div>
-        <div>
+        <div >
           <strong>Last Active:</strong>
-          <p>{{member.lastActive}}</p>
+          <p>{{member.lastActive | timeago}}</p>
         </div>
         <div>
           <strong>Member since:</strong>
-          <p>{{member.created}}</p>
+          <p>{{member.created | date: 'dd MMM yyyy'}}</p>
         </div>
       </div>
       <div class="card-footer">

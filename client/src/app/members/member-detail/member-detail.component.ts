@@ -10,11 +10,13 @@ import { MembersService } from 'src/app/_services/members.service';
   styleUrls: ['./member-detail.component.scss']
 })
 export class MemberDetailComponent implements OnInit {
-  member: Member = {} as Member;
+  member: Member; // = {} as Member;
   galleryOptions: NgxGalleryOptions[] = [];
   galleryImages: NgxGalleryImage[] = [];
 
-  constructor(private memberService: MembersService, private route: ActivatedRoute) { }
+  constructor(private memberService: MembersService, private route: ActivatedRoute) {
+    this.member = {} as Member;
+  }
 
   ngOnInit(): void {
     this.loadMember();
