@@ -93,6 +93,21 @@ export class MembersService {
     return this.http.delete(this.baseUrl + 'users/delete-photo/' + photoId);
   }
 
+  // https://localhost:5001/api/Likes/username?username=lan
+  addLike(username: string) {
+    // console.log(this.baseUrl + 'likes/' + username);
+    // return this.http.post(this.baseUrl + 'likes/' + username, {});
+    console.log(this.baseUrl + 'likes/username?username=' + username);
+    return this.http.post(this.baseUrl + 'likes/username?username=' + username, {});
+  }
+
+  getLikes(predicate: string, pageNumber: number, pageSize: number) {
+    let params = this.getPaginationHeaders(pageNumber, pageSize);
+    params = params.append('predicate', predicate);
+    // return this.http.get<Partial<Member[]>>(this.baseUrl + 'likes?predicate=' + predicate);
+    return this.getPaginatedResult<Partial<Member[]>>(this.baseUrl + 'likes', params);
+  }
+
   private getPaginatedResult<T>(url: string, params: HttpParams) {
     const paginatedResult: PaginatedResult<T> = new PaginatedResult<T>();
     return this.http.get<T>(url, { observe: 'response', params }).pipe(
