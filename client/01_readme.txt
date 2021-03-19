@@ -1,3 +1,6 @@
+1. How to start:
+   client>ng serve
+
 Changes in codes , because of Errors
 
 In tsconfig.json: NEW!!!
