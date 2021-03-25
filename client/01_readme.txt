@@ -128,3 +128,6 @@ D:\Werk\Leren\_udemy\_NetCoreAngular\DatingApp\client\src\app\_guards>ng g guard
    >npm install @angular/cdk
    >npm install @schematics/angular/utility/change
    >ng add ngx-spinner
+
+10, Install SignalR
+  >npm install @microsoft/signalr@3.1.8   
