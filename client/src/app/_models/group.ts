@@ -5,5 +5,5 @@ export interface Group {
 
 interface Connection {
     connectionId: string;
-    username: string;
+    userName: string;
 }

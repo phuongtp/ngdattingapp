@@ -22,9 +22,9 @@ export class MessageService {
 
   constructor(private http: HttpClient) { }
 
-  createHubConnection(user: User, otherUsername: string) {
+  createHubConnection(user: User, otherUserName: string) {
     this.hubConnection = new HubConnectionBuilder()
-      .withUrl(this.hubUrl + 'message?user=' + otherUsername, {
+      .withUrl(this.hubUrl + 'message?user=' + otherUserName, {
         accessTokenFactory: () => user.token
       })
       .withAutomaticReconnect()
@@ -43,7 +43,7 @@ export class MessageService {
     })
 
     this.hubConnection.on('UpdatedGroup', (group: Group) => {
-      if (group.connections.some(x=>x.username === otherUsername)) {
+      if (group.connections.some(x=>x.userName === otherUserName)) {
         this.messageThread$.pipe(take(1)).subscribe(messages => {
           messages.forEach(message => {
             if (!message.dateRead) {
@@ -68,13 +68,13 @@ export class MessageService {
     return getPaginatedResult<Message[]>(this.baseUrl + 'messages', params, this.http);
   }
 
-  getMessageThread(username: string) {
-    return this.http.get<Message[]>(this.baseUrl + 'messages/thread/' + username);
+  getMessageThread(userName: string) {
+    return this.http.get<Message[]>(this.baseUrl + 'messages/thread/' + userName);
   }
 
-  async sendMessage(username: string, content: string) {
+  async sendMessage(userName: string, content: string) {
     // return this.http.post<Message>(this.baseUrl + 'messages', {recipientUsername: username, content: content});
-    return this.hubConnection.invoke('SendMessage', {recipientUsername: username, content})
+    return this.hubConnection.invoke('SendMessage', {recipientUserName: userName, content})
       .catch(error => console.log(error));
   }
 

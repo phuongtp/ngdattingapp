@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
   initializeForm() {
     this.registerForm = this.fb.group({
       gender: ['male'],
-      username: ['', Validators.required],
+      userName: ['', Validators.required],
       knownAs: ['', Validators.required],
       dateOfBirth: ['', Validators.required],
       city: ['', Validators.required],
@@ -41,14 +41,6 @@ export class RegisterComponent implements OnInit {
       confirmPassword: ['', [Validators.required, this.matchValues('password')]]
     })
 
-    // new FormGroup({
-    //   username: new FormControl('Hello', Validators.required),
-    //   password: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]),
-    //   confirmPassword: new FormControl('', [Validators.required, this.matchValues('password')])
-    // })
-    // this.registerForm.controls.password.valueChanges.subscribe(() => {
-    //   this.registerForm.controls.confirmPassword.updateValueAndValidity();
-    // })
   }
 
 

@@ -46,6 +46,7 @@ export class AccountService {
     // Check if a single role or an array of roles
     Array.isArray(roles) ? user.roles = roles : user.roles.push(roles);
     localStorage.setItem('user', JSON.stringify(user));
+    console.log('Set CurrentUser: ' + user.userName);
     this.currentUserSource.next(user);
   }
 

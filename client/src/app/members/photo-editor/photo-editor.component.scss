@@ -1,6 +1,6 @@
 .img.img-thumbnail {
   height: 100px;
-  min-height: 100p im !important;
+  min-height: 100p !important;
   margin-bottom: 2px;
 }
 
@@ -10,4 +10,17 @@
 
 input[tyype=file] {
   color: transparent;
+}
+
+.not-approved {
+  opacity: 0.2;
+}
+
+.img-wrapper {
+  position: relative;
+}
+
+.img-text {
+  position: absolute;
+  bottom: 30%;
 }

@@ -61,10 +61,10 @@ export class MembersService {
     )
   }
 
-  getMember(username: string) {
+  getMember(userName: string) {
     const member = [...this.memberCache.values()]
       .reduce((arr, elem) => arr.concat(elem.result), [])
-      .find((member: Member) => member.username === username);
+      .find((member: Member) => member.userName === userName);
 
     if (member) {
       return of(member);
@@ -72,9 +72,9 @@ export class MembersService {
 
     // console.log(member);
 
-    // const member = this.members.find(x=> x.username === username);
+    // const member = this.members.find(x=> x.userName === userName);
     // if (member !== undefined) return of(member);
-    return this.http.get<Member>(this.baseUrl + 'users/' + username);
+    return this.http.get<Member>(this.baseUrl + 'users/' + userName);
   }
 
   updateMember(member: Member) {
@@ -95,11 +95,11 @@ export class MembersService {
   }
 
   // https://localhost:5001/api/Likes/username?username=lan
-  addLike(username: string) {
+  addLike(userName: string) {
     // console.log(this.baseUrl + 'likes/' + username);
     // return this.http.post(this.baseUrl + 'likes/' + username, {});
-    console.log(this.baseUrl + 'likes/username?username=' + username);
-    return this.http.post(this.baseUrl + 'likes/username?username=' + username, {});
+    console.log(this.baseUrl + 'likes/username?username=' + userName);
+    return this.http.post(this.baseUrl + 'likes/username?username=' + userName, {});
   }
 
   getLikes(predicate: string, pageNumber: number, pageSize: number) {
