@@ -71,22 +71,26 @@ namespace API
 
       app.UseCors(x=> x.AllowAnyHeader()
           .AllowAnyMethod()
-          .AllowCredentials()
-          .WithOrigins("https://localhost:5001"));
-          // .WithOrigins("https://localhost:4200"));
+          .AllowCredentials()          
+          .WithOrigins("https://localhost:4200"));
+
+// .WithOrigins("https://localhost:5001"));          
 
       app.UseAuthentication();
       app.UseAuthorization();
 
+      // if (env.IsProduction())
+      // {
       app.UseDefaultFiles();
       app.UseStaticFiles();
+      // }
 
       app.UseEndpoints(endpoints =>
       {
         endpoints.MapControllers();
         endpoints.MapHub<PresenceHub>("hubs/presence");
         endpoints.MapHub<MessageHub>("hubs/message");
-        endpoints.MapFallbackToController("Index", "Fallback");
+        // endpoints.MapFallbackToController("Index", "Fallback");
       });
     }
   }
